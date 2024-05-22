@@ -14,7 +14,7 @@ function SingleBook(book) {
                         <h5 className="card-title">Book title: {book.book.title}</h5>
                         <p className="card-text">Description: {book.book.description} </p>
                         {/* <a href="#" className="btn btn-primary"><i className="fa-solid fa-info"></i> Details: </a> */}
-                        <Link to={`/book/${book.book.title}/${book.book.id}`}>Details</Link>
+                        <Link to={`/book/${book.book.id}`}>Details</Link>
                     </div>
 
                 </div>

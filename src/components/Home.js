@@ -26,6 +26,9 @@ const fetchBooks = (baseurl) => {
 
 
 
+
+
+
     return (
         <div className="container">
         
@@ -37,7 +40,7 @@ const fetchBooks = (baseurl) => {
         <div className='row'>
 
         {
-                        Books.map((book, index) => {
+                        Books.slice(0,4).map((book, index) => {
                             return <SingleBook key={index} 
                             book={book} />
                         })

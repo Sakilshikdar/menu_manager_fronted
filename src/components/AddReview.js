@@ -7,15 +7,16 @@ import { useParams } from "react-router-dom";
 
 function AddReview() {
 
-    const baseUrl = "https://django-ecommerce-backend.onrender.com/api/"
+    const baseUrl = "http://127.0.0.1:8000/api/"
     const customer_id = localStorage.getItem('customer_id');
-    const { product_id } = useParams();
+    const { book_id } = useParams();
     const [ErrorMsg, setErrorMsg] = useState('');
     const [SuccessMsg, setSuccessMsg] = useState('');
     const [ReviewData, setReviewData] = useState({
-        'reviews': '',
+        'comment': '',
         'rating': 1,
         'customer': customer_id,
+        'book': book_id,
     });
 
     const inputHandler = (e) => {
@@ -27,11 +28,11 @@ function AddReview() {
 
 
         const formData = new FormData();
-        formData.append('reviews', ReviewData.reviews);
+        formData.append('comment', ReviewData.comment);
         formData.append('rating', ReviewData.rating);
         formData.append('customer', customer_id);
-        formData.append('product', product_id);
-        axios.post(baseUrl + 'productrating' + '/', formData,)
+        formData.append('book', book_id);
+        axios.post(baseUrl + 'book-reviews' + '/', formData,)
             .then(function (response) {
                 if (response.status != 201) {
                     setErrorMsg('Data not saved');
@@ -45,6 +46,7 @@ function AddReview() {
             .catch(function (error) {
                 console.log(error);
             });
+            window.location.href = `/book/${book_id}`;
     }
 
     const disbleButton = (ReviewData.reviews == '')
@@ -69,8 +71,8 @@ function AddReview() {
 
                             <form>
                                 <div className="form-group">
-                                    <label for="reviews" className="from-label">Add review</label>
-                                    <textarea name="reviews" value={ReviewData.address} onChange={inputHandler} className="form-control" id='reviews' placeholder="Enter your review" />
+                                    <label for="comment" className="from-label">Add review</label>
+                                    <textarea name="comment" value={ReviewData.address} onChange={inputHandler} className="form-control" id='reviews' placeholder="Enter your review" />
                                 </div>
                                 <div className="form-group">
                                     <label for="rating" className="from-label">Add rating</label>

@@ -1,71 +1,99 @@
-import React from 'react';
-import logo from '../logo.svg';
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {  UserContext } from '../Context';
+import axios from 'axios';
+import Modal from './Modal';
 
-function BookDetails()
-{
+function BookDetails() {
+  const baseUrl = "http://127.0.0.1:8000/api/";
+  const [book, setBook] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const { book_id } = useParams();
 
-const baseUrl = "http://127.0.0.1:8000/api/"
-const [book, setBook] = useState([]);
-const {  book_id } = useParams();
+  useEffect(() => {
+    fetchData(baseUrl + 'book_detail/' + book_id);
+    fetchReview(baseUrl + 'review_book/' + book_id);
+  }, [baseUrl, book_id]);
 
-useEffect(() => {
-    fetchData(baseUrl + 'book_detail/' + book_id)
-}, []);
-
-function fetchData(baseurl) {
+  const fetchData = (baseurl) => {
     fetch(baseurl)
-    .then(response => response.json())
-    .then(data => {
+      .then(response => response.json())
+      .then(data => {
         setBook(data);
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.error('Error fetching data:', error);
-    });
-}
+      });
+  }
 
-console.log(book);
+  const fetchReview = (baseurl) => {
+    axios.get(baseurl)
+      .then(response => {
+        setReviews(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
 
-const imgStyle = {
-    width: '100%',
-    height: '20vw',
-    objectfit: 'contain',
+  const imgStyle = {
+    width: '70%',
+    height: '25vw',
+    objectFit: 'contain',
     padding: '20px',
     background: '#f9f9f9'
-}
+  }
 
-const bookRatings = book.book_ratings || [];
-    return (
-        <div className='container'>
-            <h1>Book Details</h1>
-            <div className="card" style={{ width: " 18rem;" }}>
-                    <img src={book.image} className="card-img-top" style={imgStyle} alt="..." />
-                    <div className="card-body">
-                        <h5 className="card-title">Book title: {book.title}</h5>
-                        <p className="card-text">Description:{book.description}</p>
-                        <p className="card-text">ISBN: {book.isbn}</p>
-                        <div>
-      <h1>Book Ratings</h1>
-      <ul>
-        {bookRatings.map((rating, index) => {
-          const [score, description] = rating.split(' - ');
-          return (
-            <li key={index}>
-              <strong>Score:</strong> {score}<br />
-              <strong>Description:</strong> {description}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-                        
-             </div>
+  const ShowDelete = (id) => {
+    const deleteConfirm = window.confirm("Are you sure you want to delete?");
+    if (deleteConfirm) {
+      fetch(baseUrl + 'review_detail/' + id, {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (response.status === 204) {
+            fetchReview(baseUrl + 'book_detail/' + book_id);
+          }
+        })
+        .catch(error => console.error('Error deleting review:', error));
+    }
+  }
 
-                </div>
+  // const re= reviews || [];
+
+  return (
+    <div className='container'>
+      <h1>Book Details</h1>
+      <div className="card" >
+        <img src={book.image} className="card-img-top" style={imgStyle} alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">Book title: {book.title}</h5>
+          <p className="card-text">Description: {book.description}</p>
+          <p className="card-text">ISBN: {book.isbn}</p>
+          <div>
+            <div className='d-flex align-items-center justify-content-between'>
+              <h3 className='my-4'>Book Review</h3>
+              <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Review
+              </button>
+              <Modal book_id={book.id} book_ratings={book.book_ratings} />
+            </div>
+            {reviews.length === 0 ? <p>No Review Found</p> :
+              reviews.map((item, index) => (
+                <ul className="card" key={index}>
+                  <div className="card-body">
+                    <p className="card-text">Review: {item.comment}</p>
+                    <p className="card-text">Rating: {item.rating}</p>
+                    <p className="card-text">User: {item.user}</p>
+                    <button className='btn btn-danger' onClick={() => ShowDelete(item.id)}>Delete</button>
+                  </div>
+                </ul>
+              ))
+            }
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default BookDetails;

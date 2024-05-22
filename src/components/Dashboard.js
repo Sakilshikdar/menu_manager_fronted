@@ -10,7 +10,7 @@ function Dashboard() {
     const [Reviews, setReviews] = useState([])
     useEffect(() => {
         fetchBooks(baseUrl + '/all_book')
-        fetchReview(baseUrl + '/reviews')
+        fetchReview(baseUrl + '/book-reviews')
 
     }, []);
     const fetchBooks = (baseurl) => {
