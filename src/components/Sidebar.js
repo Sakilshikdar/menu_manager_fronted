@@ -11,8 +11,7 @@ function Sidebar() {
                 <Link to={`/allbook/${user_id}`} className="list-group-item list-group-item-action">All Book</Link>
                 <Link to="/addbook" className="list-group-item list-group-item-action">Add Book</Link>
                 <Link to="/customer/ChangePassword" className="list-group-item list-group-item-action">Change Password</Link>
-                <Link
-                    to="" className="list-group-item list-group-item-action">Logout</Link>
+                
             </ul>
         </div>
     );

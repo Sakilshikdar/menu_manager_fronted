@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 
-function AddReview() {
+function AddReview(props) {
 
     const baseUrl = "http://127.0.0.1:8000/api/"
     const customer_id = localStorage.getItem('customer_id');

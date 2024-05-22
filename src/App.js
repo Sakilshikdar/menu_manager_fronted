@@ -20,34 +20,40 @@ import UpdateBook from './components/UpdateBook';
 import ShowAllBook from './components/ShowAllBook';
 import AddReview from './components/AddReview';
 import Modal from './components/Modal';
+import UpdateModal from './components/UpdateModel';
+import Footer from './components/Footer';
+import CustomerChangePassword from './components/ChangePassword';
 
 
 function App() {
   const checkCart = localStorage.getItem('cartData');
   const [cartData, setCartData] = useState(JSON.parse(checkCart));
   return (
-  
+
     <CartContext.Provider value={{ cartData, setCartData }}>
-   <Header />
-   <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/allbook/:user_id' element={<Allbook />} />
-          <Route path='/showAllBook' element={<ShowAllBook />} />
-          {/* <Route path='/book/:book_slug/:book_id' element={<BookDetails />} /> */}
-          <Route path='/book/:book_id' element={<BookDetails />} />
-          {/* <Route path='/book/:book_id' element={<UpdateBook />} /> */}
-          <Route path='/book/:book_slug/:book_id' element={<UpdateBook />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/logout' element={<CustomerLogout />} />
-          <Route path='/profile' element={<UpdateProfile />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/sidebar' element={<Sidebar />} />
-          <Route path='/addbook' element={<AddBook />} />
-          <Route path='/add-review/:book_id' element={<AddReview />} />
-          <Route path='/modal' element={<Modal />} />
-          {/* <Route path='/book/:book_slug/:book_id' element={<BookDetails />} /> */}
-    </Routes>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/allbook/:user_id' element={<Allbook />} />
+        <Route path='/showAllBook' element={<ShowAllBook />} />
+        {/* <Route path='/book/:book_slug/:book_id' element={<BookDetails />} /> */}
+        <Route path='/book/:book_id' element={<BookDetails />} />
+        {/* <Route path='/book/:book_id' element={<UpdateBook />} /> */}
+        <Route path='/book/:book_slug/:book_id' element={<UpdateBook />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<CustomerLogout />} />
+      <Route path='/footer' element={<Footer />} />
+        <Route path='/profile' element={<UpdateProfile />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/sidebar' element={<Sidebar />} />
+        <Route path='/addbook' element={<AddBook />} />
+        <Route path='/add-review/:book_id' element={<AddReview />} />
+        <Route path='/modal' element={<Modal />} />
+        <Route path='/customer/ChangePassword' element={<CustomerChangePassword/>} />
+
+      </Routes>
+      <Footer />
     </CartContext.Provider>
   );
 }

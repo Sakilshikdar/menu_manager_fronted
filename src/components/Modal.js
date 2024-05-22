@@ -2,8 +2,11 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import axios from "axios";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../Context";
+import { useContext } from "react";
+
 
 function Modal(props) {
     const { book_id} = props;
@@ -19,8 +22,15 @@ function Modal(props) {
         'book': book_id,
     });
 
+    const userContext = useContext(UserContext);
+    if(!userContext){
+        window.location.href = '/login';
+    }
+    
+  useEffect(() => {
+  }, [baseUrl, book_id]);
 
-    // const bookRatings = book.book_ratings || [];
+ 
 
     const inputHandler = (e) => {
         setReviewData({ ...ReviewData, [e.target.name]: e.target.value });
@@ -50,6 +60,7 @@ function Modal(props) {
                 console.log(error);
             });
             window.location.reload()
+            
         }
         
         const disbleButton = (ReviewData.reviews == '')

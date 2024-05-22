@@ -4,7 +4,6 @@ import { UserContext, CartContext } from '../Context';
 
 function Header() {
     const userContext = useContext(UserContext);
-    const { cartData, setCartData } = useContext(CartContext);
     // const currentCurrency = localStorage.getItem('currency');
     return (
         <div className="container">
