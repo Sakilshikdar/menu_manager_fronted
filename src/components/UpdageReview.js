@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 function UpdateBook() {
     const { book_id } = useParams();
-    const baseUrl = "http://127.0.0.1:8000/api/"
+    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api/"
     const customer_id = localStorage.getItem('customer_id');
     const [categoryData, setCategoryData] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');

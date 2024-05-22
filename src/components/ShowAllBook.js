@@ -6,7 +6,7 @@ function ShowAllBook() {
 
 
     const [Books, setBooks] = useState([])
-    const baseUrl = "http://127.0.0.1:8000/api"
+    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api"
     useEffect(() => {
         fetchBooks(baseUrl + '/all_book')
 
@@ -21,7 +21,7 @@ function ShowAllBook() {
             });
     }
     return (
-        <div className='container d-flex align-items-center justify-content-between'>
+        <div className='container '>
             <div className='row'>
 
                 {

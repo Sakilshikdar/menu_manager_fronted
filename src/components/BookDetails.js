@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Modal from './Modal';
 import UpdateModal from './UpdateModel';
-import { UserContext } from '../Context';
+import logo from '../logo.svg';
 
 import { useContext } from 'react';
 
 function BookDetails() {
-  const baseUrl = "http://127.0.0.1:8000/api/";
+  const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api/";
   const [book, setBook] = useState([]);
   const [reviews, setReviews] = useState([]);
   const { book_id } = useParams();
@@ -66,9 +66,7 @@ function BookDetails() {
     }
   }
 
-  // const re= reviews || [];
-  console.log(reviews);
-
+  
   return (
     <div className='container my-4'>
       <h1 className='mb-4'>Book Details</h1>

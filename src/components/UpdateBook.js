@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 function UpdateBook() {
     const { book_id } = useParams();
-    const baseUrl = "http://127.0.0.1:8000/api/"
+    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api/"
     const customer_id = localStorage.getItem('customer_id');
     const [categoryData, setCategoryData] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
@@ -96,7 +96,7 @@ function UpdateBook() {
                     setErrorMsg(
                         ''
                     );
-                    setSuccessMsg(response.statusText);  
+                    setSuccessMsg('Book Updated Successfully');  
                 }
 
                 else {
@@ -125,7 +125,7 @@ function UpdateBook() {
                         </div>
                         <div className="card-body">
                             {successMsg && <div className="text-success mb-2">{successMsg}</div>}
-                            {errorMsg && <div className="text-danger mb-2">{errorMsg}</div>}
+                            {errorMsg && <div className="text-danger p-3 mb-2">{errorMsg}</div>}
 
                             <form>
 

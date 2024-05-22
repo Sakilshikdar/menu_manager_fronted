@@ -5,7 +5,7 @@ import axios from "axios";
 import Sidebar from "./Sidebar";
 
 function AddBook() {
-    const baseurl = 'http://127.0.0.1:8000/api/'
+    const baseurl = 'https://book-manager-backend-ngfd.onrender.com/api/'
     const customer_id = localStorage.getItem('customer_id');
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
@@ -70,7 +70,7 @@ function AddBook() {
                     setErrorMsg(
                         ''
                     );
-                    setSuccessMsg(response.statusText)
+                    setSuccessMsg('Book added Successfully')
                 }
                 else {
                     setSuccessMsg('');
@@ -100,7 +100,7 @@ function AddBook() {
                         </div>
                         <div className="card-body">
                             {successMsg && <div className="text-success mb-2 p-2 w-25">Book added</div>}
-                            {errorMsg && <div className="text-danger mb-2">{errorMsg}</div>}
+                            {errorMsg && <div className="text-danger p-3 mb-2">{errorMsg}</div>}
 
                             <form>
                                 <div className="form-group  mb-2">

@@ -8,7 +8,7 @@ import { UserContext, CartContext } from '../Context';
 function Home() {
   const [Books, setBooks] = useState([]);
   const [Reviews, setReviews] = useState([]);
-  const baseUrl = "http://127.0.0.1:8000/api";
+  const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api";
 
   useEffect(() => {
     fetchBooks(baseUrl + '/all_book');

@@ -19,7 +19,7 @@ function UpdateProfile() {
     var customer_id = localStorage.getItem('customer_id');
 
 
-    const baseUrl = "http://127.0.0.1:8000/api"
+    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api"
     useEffect(() => {
         fetchData(baseUrl + '/customer/' + customer_id)
     }, []);

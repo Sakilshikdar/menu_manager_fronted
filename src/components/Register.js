@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 function Register() {
 
-    const baseurl = 'http://127.0.0.1:8000/api/'
+    const baseurl = 'https://book-manager-backend-ngfd.onrender.com/api/'
     const [formError, setFormError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');

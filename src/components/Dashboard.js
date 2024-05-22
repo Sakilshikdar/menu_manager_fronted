@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Dashboard() {
-    const baseUrl = "http://127.0.0.1:8000/api"
+    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api"
 
     const [Books, setBooks] = useState([])
     const [Reviews, setReviews] = useState([])
