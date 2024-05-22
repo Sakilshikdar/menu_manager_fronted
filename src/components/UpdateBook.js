@@ -124,7 +124,7 @@ function UpdateBook() {
                             </h3>
                         </div>
                         <div className="card-body">
-                            {successMsg && <div className="gittext-success mb-2">{successMsg}</div>}
+                            {successMsg && <p className="gittext-success h4 mb-2 text-success">{successMsg}</p>}
                             {errorMsg && <div className="text-danger p-3 mb-2">{errorMsg}</div>}
 
                             <form>
