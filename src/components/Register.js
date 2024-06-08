@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 function Register() {
 
-    const baseurl = 'https://book-manager-backend-ngfd.onrender.com/api/'
+    const baseurl = 'http://127.0.0.1:8000/api/'
     const [formError, setFormError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
@@ -15,6 +15,7 @@ function Register() {
         "email": '',
         "password": '',
         "mobile": "",
+        "account_type": "",
     });
 
     const inputHandeler = (e) => {
@@ -32,7 +33,8 @@ function Register() {
         formData.append('username', registerFormData.username);
         formData.append('mobile', registerFormData.mobile);
         formData.append('password', registerFormData.password);
-        axios.post(baseurl + 'customer_register/', formData)
+        formData.append('account_type', registerFormData.account_type);
+        axios.post(baseurl + 'admincustomer_register/', formData)
             .then(function (response) {
                 if (response.data.bool == false) {
                     setErrorMsg(response.data.msg);
@@ -46,6 +48,7 @@ function Register() {
                         "email": '',
                         "password": '',
                         "mobile": "",
+                        "account_type": "",
                     })
                     setErrorMsg(
                         ''
@@ -57,6 +60,7 @@ function Register() {
             .catch(function (error) {
                 console.log(error);
             });
+            localStorage.setItem('account_type', registerFormData.account_type);
     }
 
 
@@ -92,6 +96,14 @@ function Register() {
                                 <div className="form-group">
                                     <label for="username">User Name</label>
                                     <input type="text" name='username' onChange={inputHandeler} value={registerFormData.username} className="form-control" id='username' placeholder="Enter user name" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="account_type">Account Type</label>
+                                    <select name="account_type" onChange={inputHandeler} value={registerFormData.account_type} className="form-control" id="account_type">
+                                        <option value="" disabled>Select account type</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label for="email">Email address</label>

@@ -7,14 +7,13 @@ import { useParams } from "react-router-dom";
 
 
 
-function UpdateBook() {
+function UpdateMenu() {
     const { book_id } = useParams();
-    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api/"
+    const baseUrl = "http://127.0.0.1:8000/api/"
     const customer_id = localStorage.getItem('customer_id');
-    const [categoryData, setCategoryData] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
-    const [BookData, setBookData] = useState({
+    const [MenuData, setMenuData] = useState({
         "title": '',
         'customer': customer_id,
         "slug": '',
@@ -22,12 +21,10 @@ function UpdateBook() {
         "image": '',
         'published_date': '',
         "author": '',
-        "isbn": '',
+        "price": '',
     });
 
     useEffect(() => {
-        // fetchData(baseUrl + 'book_detail/' + book_id)
-
         fetchReview(baseUrl + 'review_book/' + book_id);
     }, []);
 
@@ -35,7 +32,7 @@ function UpdateBook() {
         fetch(baseurl)
             .then(response => response.json())
             .then(data => {
-                setBookData(data);
+                setMenuData(data);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -47,7 +44,6 @@ function UpdateBook() {
     const formatDate = (dateString) => {
         const date = new Date(dateString);
 
-        // Options for formatting the date into a 12-hour format with AM/PM
         const options = {
             hour: 'numeric',
             minute: 'numeric',
@@ -58,32 +54,23 @@ function UpdateBook() {
         return date.toLocaleString('en-US', options);
     };
 
-    const DateDisplay = ({ dateString }) => {
-        return (
-            <div>
-                <h1>Formatted Date</h1>
-                <p>{formatDate(dateString)}</p>
-            </div>
-        );
-    };
-
 
     const inputHandler = (e) => {
-        setBookData({ ...BookData, [e.target.name]: e.target.value });
+        setMenuData({ ...MenuData, [e.target.name]: e.target.value });
 
     }
 
     const submitHandler = (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault();
 
         const formData = new FormData();
-        formData.append('customer', BookData.customer);
-        formData.append('title', BookData.title);
-        formData.append('slug', BookData.slug);
-        formData.append('author', BookData.author);
-        formData.append('published_date', BookData.published_date);
-        formData.append('isbn', BookData.isbn);
-        formData.append('description', BookData.description);
+        formData.append('customer', MenuData.customer);
+        formData.append('title', MenuData.title);
+        formData.append('slug', MenuData.slug);
+        formData.append('author', MenuData.author);
+        formData.append('published_date', MenuData.published_date);
+        formData.append('price', MenuData.price);
+        formData.append('description', MenuData.description);
 
 
         axios.patch(baseUrl + 'book_detail/' + book_id + '/', formData, {
@@ -133,32 +120,32 @@ function UpdateBook() {
 
                                 <div className="form-group  mb-2">
                                     <label for="Title">Title</label>
-                                    <input name="title" value={BookData.title} type="text" onChange={inputHandler} className="form-control" id='Title' />
+                                    <input name="title" value={MenuData.title} type="text" onChange={inputHandler} className="form-control" id='Title' />
                                 </div>
                                 <p className="text-danger  pt-2 w-25">Slug and Title are same name</p>
                                 <div className="form-group  mb-2">
                                     <label for="slug">Slug</label>
-                                    <input name="slug" value={BookData.title} type="text" onChange={inputHandler} className="form-control" id='Title' />
+                                    <input name="slug" value={MenuData.title} type="text" onChange={inputHandler} className="form-control" id='Title' />
                                 </div>
 
                                 <div className="form-group  mb-2">
                                     <label for="published_date">Published date</label>
-                                    <input name="published_date" disabled value={BookData.published_date.slice(0, 10)} type="text" onChange={inputHandler} className="form-control" id='published_date' />
+                                    <input name="published_date" disabled value={MenuData.published_date.slice(0, 10)} type="text" onChange={inputHandler} className="form-control" id='published_date' />
                                 </div>
                                 <div className="form-group  mb-2">
                                     <label for="author">Author</label>
-                                    <input name="author" value={BookData.author} type="text" onChange={inputHandler} className="form-control" id='author' />
+                                    <input name="author" value={MenuData.author} type="text" onChange={inputHandler} className="form-control" id='author' />
                                 </div>
 
                                 <div className="form-group  mb-2">
-                                    <label for="isbn">ISBN NO</label>
-                                    <input name="isbn" value={BookData.isbn} type="text" onChange={inputHandler} className="form-control" id='Title' />
+                                    <label for="price">ISBN NO</label>
+                                    <input name="price" value={MenuData.price} type="text" onChange={inputHandler} className="form-control" id='Title' />
                                 </div>
 
 
                                 <div className="form-group mb-2">
                                     <label for="description">Description</label>
-                                    <textarea name="description" value={BookData.description} onChange={inputHandler} rows={8} className="form-control" id='isbn' />
+                                    <textarea name="description" value={MenuData.description} onChange={inputHandler} rows={8} className="form-control" id='price' />
                                 </div>
                                 <button onClick={submitHandler} type="button" className="btn btn-primary my-3">Submit</button>
                             </form>
@@ -178,4 +165,4 @@ const styles = {
 
     }
 }
-export default UpdateBook;
+export default UpdateMenu;

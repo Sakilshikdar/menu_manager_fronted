@@ -7,16 +7,16 @@ import { useParams } from "react-router-dom";
 
 function AddReview(props) {
 
-    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api/"
+    const baseUrl = "http://127.0.0.1:8000/api/"
     const customer_id = localStorage.getItem('customer_id');
-    const { book_id } = useParams();
+    const { menu_id } = useParams();
     const [ErrorMsg, setErrorMsg] = useState('');
     const [SuccessMsg, setSuccessMsg] = useState('');
     const [ReviewData, setReviewData] = useState({
         'comment': '',
         'rating': 1,
         'customer': customer_id,
-        'book': book_id,
+        'menu': menu_id,
     });
 
     const inputHandler = (e) => {
@@ -31,8 +31,8 @@ function AddReview(props) {
         formData.append('comment', ReviewData.comment);
         formData.append('rating', ReviewData.rating);
         formData.append('customer', customer_id);
-        formData.append('book', book_id);
-        axios.post(baseUrl + 'book-reviews' + '/', formData,)
+        formData.append('menu', menu_id);
+        axios.post(baseUrl + 'menu-reviews' + '/', formData,)
             .then(function (response) {
                 if (response.status != 201) {
                     setErrorMsg('Data not saved');
@@ -46,7 +46,7 @@ function AddReview(props) {
             .catch(function (error) {
                 console.log(error);
             });
-            window.location.href = `/book/${book_id}`;
+            window.location.href = `/menu/${menu_id}`;
     }
 
     const disbleButton = (ReviewData.reviews == '')

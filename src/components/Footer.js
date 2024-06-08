@@ -63,7 +63,7 @@ function Footer() {
                     <div class="row mt-3">
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                             <h6 class="text-uppercase fw-bold mb-4">
-                                <i class="fas fa-gem me-3"></i>Book Manager
+                                <i class="fas fa-gem me-3"></i>Menu Manager
                             </h6>
                             <p>
                                 Ecommerce-Shop is a leading online shopping platform that offers a wide range of products at competitive prices. Our platform is user-friendly, secure, and reliable. Shop with us today!
@@ -75,7 +75,7 @@ function Footer() {
                                 Products
                             </h6>
                             <p>
-                                <a href="#!" class="text-reset">Books</a>
+                                <a href="#!" class="text-reset">Menus</a>
                             </p>
                             <p>
                                 <a href="#!" class="text-reset">Bike</a>

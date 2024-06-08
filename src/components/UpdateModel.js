@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const UpdateModal = ({ review }) => {
   
-  const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api/";
+  const baseUrl = "http://127.0.0.1:8000/api/";
   const [editReview, setEditReview] = useState({ comment: review.comment, rating: review.rating });
   const handleEditChange = (event) => {
     const { name, value } = event.target;

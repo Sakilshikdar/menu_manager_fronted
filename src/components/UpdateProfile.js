@@ -19,9 +19,9 @@ function UpdateProfile() {
     var customer_id = localStorage.getItem('customer_id');
 
 
-    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api"
+    const baseUrl = "http://127.0.0.1:8000/api"
     useEffect(() => {
-        fetchData(baseUrl + '/customer/' + customer_id)
+        fetchData(baseUrl + '/admincustomer/' + customer_id+'/')
     }, []);
 
     function fetchData(baseurl) {
@@ -63,7 +63,7 @@ function UpdateProfile() {
         if (ProfileData.p_image instanceof File) {
             formData.append('profile_img', ProfileData.p_image);
         }
-        axios.put(baseUrl + '/customer/' + customer_id + '/', formData, {
+        axios.put(baseUrl + '/admincustomer/' + customer_id + '/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -96,8 +96,8 @@ function UpdateProfile() {
                 console.log(error);
             });
     }
+    console.log(ProfileData);
     return (
-
         <div>
             <div className="container mt-5">
                 <div className="row">
@@ -112,8 +112,6 @@ function UpdateProfile() {
                             </h3>
                         </div>
                         <div className="card-body">
-
-
                             <form>
                                 <div className="form-group">
                                     <label for="firstname">First Name</label>

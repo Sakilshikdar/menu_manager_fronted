@@ -3,7 +3,7 @@ import axios from 'axios';
 // sa017213
 // customer
 function Login() {
-    const baseurl = 'https://book-manager-backend-ngfd.onrender.com/api/'
+    const baseurl = 'http://127.0.0.1:8000/api/'
     const [formError, setFormError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -24,7 +24,7 @@ function Login() {
         const formData = new FormData();
         formData.append('username', loginFormData.username);
         formData.append('password', loginFormData.password);
-        axios.post(baseurl + 'customer_login/', formData)
+        axios.post(baseurl + 'admincustomer_login/', formData)
             .then(function (response) {
                 if (response.data.bool == false) {
                     setFormError(true);

@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Dashboard() {
-    const baseUrl = "https://book-manager-backend-ngfd.onrender.com/api"
+    const baseUrl = "http://127.0.0.1:8000/api"
 
-    const [Books, setBooks] = useState([])
+    const [Menus, setMenus] = useState([])
     const [Reviews, setReviews] = useState([])
     useEffect(() => {
-        fetchBooks(baseUrl + '/all_book')
-        fetchReview(baseUrl + '/book-reviews')
-
-    }, []);
-    const fetchBooks = (baseurl) => {
+        fetchMenus('http://127.0.0.1:8000/api/menus/');
+        fetchReview('http://127.0.0.1:8000/api/rating/');
+      }, []);
+    
+    const fetchMenus = (baseurl) => {
         axios.get(baseurl)
             .then(response => {
-                setBooks(response.data)
+                setMenus(response.data)
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -45,10 +45,10 @@ function Dashboard() {
                                 <div>
                                     <div className="card">
                                         <div className="card-body text-center">
-                                            <h4>Total Books</h4>
+                                            <h4>Total Menus</h4>
                                             <h4>
-                                                <Link to="/showAllBook">
-                                                    {Books.length}</Link>
+                                                <Link to="/showAllMenu">
+                                                    {Menus.length}</Link>
                                             </h4>
                                         </div>
                                     </div>
@@ -66,18 +66,6 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                            {/* <div className="col-md-4 mb-2">
-                                <div>
-                                    <div className="card">
-                                        <div className="card-body text-center">
-                                            <h4>Total User</h4>
-                                            <h4>
-                                                <Link to="/customer/address">{CountList.totalAddress}</Link>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
 

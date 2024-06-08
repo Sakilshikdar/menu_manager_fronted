@@ -4,7 +4,7 @@ import axion from 'axios';
 
 
 function CustomerChangePassword() {
-    const baseurl = 'https://book-manager-backend-ngfd.onrender.com/api/'
+    const baseurl = 'http://127.0.0.1:8000/api/'
     const [PasswordData, setPasswordData] = useState({
         'password': '',
         'c_password': ''
@@ -30,7 +30,7 @@ function CustomerChangePassword() {
             setConfirmError(false);
             const formdata = new FormData();
             formdata.append('password', PasswordData.password);
-            axion.post(baseurl + 'customer-change-password/' + customer_id + '/', formdata)
+            axion.post(baseurl + 'admincustomer-change-password/' + customer_id + '/', formdata)
                 .then(data => {
                     alert('Password Changed Successfully');
                 }).catch(error => {

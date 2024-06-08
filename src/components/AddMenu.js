@@ -4,8 +4,8 @@ import axios from "axios";
 
 import Sidebar from "./Sidebar";
 
-function AddBook() {
-    const baseurl = 'https://book-manager-backend-ngfd.onrender.com/api/'
+function AddMenu() {
+    const baseurl = 'http://127.0.0.1:8000/api/'
     const customer_id = localStorage.getItem('customer_id');
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
@@ -16,8 +16,8 @@ function AddBook() {
         "description": '',
         "image": '',
         'published_date': '',
-        "author": '',
-        "isbn": '',
+        "cook": '',
+        "price": '',
     });
 
 
@@ -43,13 +43,13 @@ function AddBook() {
         formData.append('customer', productData.customer);
         formData.append('title', productData.title);
         formData.append('slug', productData.slug);
-        formData.append('author', productData.author);
+        formData.append('cook', productData.cook);
         formData.append('published_date', productData.published_date);
-        formData.append('isbn', productData.isbn);
+        formData.append('price', productData.price);
         formData.append('description', productData.description);
         formData.append('image', productData.image);
 
-        axios.post(baseurl + 'all_book/', formData, {
+        axios.post(baseurl + 'menus/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
@@ -64,13 +64,13 @@ function AddBook() {
                         "description": '',
                         "image": '',
                         'published_date': '',
-                        "author": '',
-                        "isbn": '', 
+                        "cook": '',
+                        "price": '', 
                     })
                     setErrorMsg(
                         ''
                     );
-                    setSuccessMsg('Book added Successfully')
+                    setSuccessMsg('Menu added Successfully')
                 }
                 else {
                     setSuccessMsg('');
@@ -95,11 +95,11 @@ function AddBook() {
                         <div className="card-header">
 
                             <h3 className="mb-4">
-                                Add Book
+                                Add Menu
                             </h3>
                         </div>
                         <div className="card-body">
-                            {successMsg && <div className="text-success mb-2 p-2 w-25">Book added</div>}
+                            {successMsg && <div className="text-success mb-2 p-2 w-25">Menu added</div>}
                             {errorMsg && <div className="text-danger p-3 mb-2">{errorMsg}</div>}
 
                             <form>
@@ -118,18 +118,18 @@ function AddBook() {
                                     <input name="published_date" value={productData.published_date} type="date" onChange={inputHandler} className="form-control" id='published_date' />
                                 </div>
                                 <div className="form-group  mb-2">
-                                    <label for="author">Author</label>
-                                    <input name="author" value={productData.suthor} type="text" onChange={inputHandler} className="form-control" id='author' />
+                                    <label for="cook">Cook</label>
+                                    <input name="cook" value={productData.suthor} type="text" onChange={inputHandler} className="form-control" id='author' />
                                 </div>
                                 <div className="form-group  mb-2">
-                                    <label for="isbn">ISBN NO</label>
-                                    <input name="isbn" value={productData.isbn} type="text" onChange={inputHandler} className="form-control" id='Title' />
+                                    <label for="price">Price</label>
+                                    <input name="price" value={productData.price} type="text" onChange={inputHandler} className="form-control" id='Title' />
                                 </div>
 
 
                                 <div className="form-group mb-2">
                                     <label for="description">Description</label>
-                                    <textarea name="description" value={productData.description} onChange={inputHandler} rows={8} className="form-control" id='isbn' />
+                                    <textarea name="description" value={productData.description} onChange={inputHandler} rows={8} className="form-control" id='price' />
                                 </div>
 
                               
@@ -151,4 +151,4 @@ function AddBook() {
         </div>
     );
 }
-export default AddBook;
+export default AddMenu;

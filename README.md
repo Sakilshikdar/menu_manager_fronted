@@ -9,7 +9,7 @@
 
     . 3rd section FAQ and 7th section footer
 
-2. Book details button click show all details page
+2. Menu details button click show all details page
 3. All details page last see the add commint button
 4. Add button click we add review and edit and Delete
 5. Dashbaord have Profile where edit profile
