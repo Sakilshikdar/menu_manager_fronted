@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const UpdateModal = ({ review }) => {
   
-  const baseUrl = "http://127.0.0.1:8000/api/";
+  const baseUrl = "https://menu-manager-backend.onrender.com/api/";
   const [editReview, setEditReview] = useState({ comment: review.comment, rating: review.rating });
   const handleEditChange = (event) => {
     const { name, value } = event.target;
@@ -46,7 +46,7 @@ const UpdateModal = ({ review }) => {
                 <input type="number" className="form-control" id="rating" name="rating" value={editReview.rating} onChange={handleEditChange} />
               </div>
               <button type="submit" className="btn btn-primary">Update</button>
-              <button type="button" class="btn btn-secondary ms-3" data-bs-dismiss="modal">cancel</button>
+              <button type="button" className="btn btn-secondary ms-3" data-bs-dismiss="modal">cancel</button>
             </form>
           </div>
         </div>

@@ -8,7 +8,7 @@ import logo from '../logo.svg';
 import { useContext } from 'react';
 
 function MenuDetails() {
-  const baseUrl = "http://127.0.0.1:8000/api/";
+  const baseUrl = "https://menu-manager-backend.onrender.com/api/";
   const [menu, setMenu] = useState([]);
   const [reviews, setReviews] = useState([]);
   const { menu_id } = useParams();
@@ -19,8 +19,8 @@ function MenuDetails() {
 
 
   useEffect(() => {
-    fetchData('http://127.0.0.1:8000/api/menu-detail/' + menu_id + '/');
-    fetchReview('http://127.0.0.1:8000/api/rating/');
+    fetchData('https://menu-manager-backend.onrender.com/api/menu-detail/' + menu_id + '/');
+    fetchReview('https://menu-manager-backend.onrender.com/api/rating/');
   }, [baseUrl, menu_id]);
 
   const fetchData = (baseurl) => {
@@ -67,8 +67,6 @@ function MenuDetails() {
     }
   }
 
-  const item = reviews;
-  console.log(item);
 
 
   return (
@@ -96,51 +94,51 @@ function MenuDetails() {
                     <p className="card-text">Comment: {item.comment}</p>
 
                     {
-                      item.rating == 1 && <i class="fa-solid fa-star text-warning"></i>
+                      item.rating == 1 && <i className="fa-solid fa-star text-warning"></i>
                     }
 
                     {
                       item.rating == 2 &&
                       <>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
                       </>
                     }
 
                     {
                       item.rating == 3 && <>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
                       </>
                     }
 
 
                     {
                       item.rating == 4 && <>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
                       </>
                     }
 
                     {
                       item.rating == 5 && <>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
                       </>
                     }
                     {
                       item.rating > 5 && <>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
+                        <i className="fa-solid fa-star text-warning"></i>
                       </>
                     }
                     <br></br>

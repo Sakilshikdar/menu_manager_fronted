@@ -19,7 +19,7 @@ function UpdateProfile() {
     var customer_id = localStorage.getItem('customer_id');
 
 
-    const baseUrl = "http://127.0.0.1:8000/api"
+    const baseUrl = "https://menu-manager-backend.onrender.com/api"
     useEffect(() => {
         fetchData(baseUrl + '/admincustomer/' + customer_id+'/')
     }, []);
@@ -136,7 +136,7 @@ function UpdateProfile() {
                                 </div>
                                 <div className="form-group">
                                     <label for="pimg">Profile Image:</label>
-                                    <input name="p_image" type="file" onChange={handleFileChange} class="form-control-file" id="pimg" />
+                                    <input name="p_image" type="file" onChange={handleFileChange} className="form-control-file" id="pimg" />
                                     <p>
                                         <img src={ProfileData.p_image} alt="profile image" width="100px" className="mt-2 rounded" />
                                     </p>

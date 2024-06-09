@@ -9,8 +9,8 @@ function Dashboard() {
     const [Menus, setMenus] = useState([])
     const [Reviews, setReviews] = useState([])
     useEffect(() => {
-        fetchMenus('http://127.0.0.1:8000/api/menus/');
-        fetchReview('http://127.0.0.1:8000/api/rating/');
+        fetchMenus('https://menu-manager-backend.onrender.com/api/menus/');
+        fetchReview('https://menu-manager-backend.onrender.com/api/rating/');
       }, []);
     
     const fetchMenus = (baseurl) => {

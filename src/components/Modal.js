@@ -10,10 +10,8 @@ import { useContext } from "react";
 
 function Modal(props) {
     const {menu_id} = props;
-    console.log(menu_id);
-    const baseUrl = "http://127.0.0.1:8000/api/"
+    const baseUrl = "https://menu-manager-backend.onrender.com/api/"
     const customer_id = localStorage.getItem('customer_id');
-    // const { menu_id } = useParams();
     const [ErrorMsg, setErrorMsg] = useState('');
     const [SuccessMsg, setSuccessMsg] = useState('');
     const [ReviewData, setReviewData] = useState({
@@ -22,6 +20,7 @@ function Modal(props) {
         'customer': customer_id,
         'menu': menu_id,
     });
+    console.log(menu_id);
 
     const userContext = useContext(UserContext);
     if(!userContext){
@@ -60,7 +59,10 @@ function Modal(props) {
             .catch(function (error) {
                 console.log(error);
             });
-            window.location.reload()
+            setTimeout(() => {
+                
+                window.location.reload()
+            }, 1000);
             
         }
         
@@ -68,11 +70,11 @@ function Modal(props) {
 
     return (
         <>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
+            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
                         
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <div>
                                 <div className="container mt-5">
                                     <div className="card-header">
@@ -105,8 +107,8 @@ function Modal(props) {
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
                             <button onClick={submitHandler} type="submit" data-bs-dismiss="modal" className="btn btn-primary my-3" disabled={disbleButton}>Submit</button>
                         </div>
                     </div>

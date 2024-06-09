@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 function UpdateMenu() {
     const { book_id } = useParams();
-    const baseUrl = "http://127.0.0.1:8000/api/"
+    const baseUrl = "https://menu-manager-backend.onrender.com/api/"
     const customer_id = localStorage.getItem('customer_id');
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');

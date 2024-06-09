@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 function UpdateMenu() {
     const {menu_id } = useParams();
-    const baseUrl = "http://127.0.0.1:8000/api/"
+    const baseUrl = "https://menu-manager-backend.onrender.com/api/"
     const customer_id = localStorage.getItem('customer_id');
     const [categoryData, setCategoryData] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
@@ -84,7 +84,7 @@ function UpdateMenu() {
         formData.append('description', MenuData.description);
        
 
-        axios.patch('http://127.0.0.1:8000/api/menu-detail/' + menu_id + '/', formData, {
+        axios.patch('https://menu-manager-backend.onrender.com/api/menu-detail/' + menu_id + '/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }

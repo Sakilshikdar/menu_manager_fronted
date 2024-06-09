@@ -5,7 +5,7 @@ import axios from "axios";
 import Sidebar from "./Sidebar";
 
 function AddMenu() {
-    const baseurl = 'http://127.0.0.1:8000/api/'
+    const baseurl = 'https://menu-manager-backend.onrender.com/api/'
     const customer_id = localStorage.getItem('customer_id');
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');

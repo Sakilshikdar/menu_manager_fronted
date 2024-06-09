@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 
 
 function Allbook() {
-    const baseUrl = "http://127.0.0.1:8000/api"
+    const baseUrl = "https://menu-manager-backend.onrender.com/api"
     const { user_id } = useParams();
     const account_type = localStorage.getItem('account_type');
 
@@ -35,7 +35,7 @@ function Allbook() {
     const ShowDelete = (menu_id) => {
         var deleteConfirm = window.confirm("Are you sure you want to delete?");
         if (deleteConfirm) {
-            fetch('http://127.0.0.1:8000/api/menu-detail/' + menu_id + '/',
+            fetch('https://menu-manager-backend.onrender.com/api/menu-detail/' + menu_id + '/',
                 {
                     method: 'DELETE'
                 }
